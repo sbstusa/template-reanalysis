@@ -1,0 +1,91 @@
+---
+title: How can we increase our confidence in our results.
+author: Jake Bowers
+date: '`r format(Sys.Date(), "%B %d, %Y")`'
+mainfont: "Minion Pro"
+output:
+  beamer_presentation:
+    latex_engine: xelatex
+    template: sbst.beamer
+    keep_tex: yes
+    toc: yes 
+  pdf:
+    toc: yes
+---
+
+
+```{r include=FALSE, cache=FALSE}
+## the toc: yes line above tricks pandoc into running latex twice so that we can see the nice logos
+
+# Some customization.  You can alter or delete as desired (if you know what you are doing).
+# knitr settings to control how R chunks work.
+
+require(knitr)
+opts_chunk$set(
+	       tidy=FALSE,     # display code as typed
+	       size="footnotesize",    # slightly smaller font for code
+	       echo=TRUE,
+	       results='markup',
+	       strip.white=TRUE,
+	       cache=FALSE,
+	       highlight=TRUE,
+	       width.cutoff=132,
+	       size='footnotesize',
+	       out.width='.9\\textwidth',
+	       message=FALSE,
+	       comment=NA)
+```
+
+# What is this about?
+
+The report is coming.
+
+We want to have confidence in our results.
+
+How shall we do this?
+
+# High level process
+
+A second pair of eyes.
+
+Different levels of scrutiny depend on divergence from priors: can you re-run my code? can you re-create my results (numbers, figures, tables) without seeing my code?
+
+
+
+# Nitty Gritty 
+
+What does a second pair of eyes imply?
+
+Assume a colleague will need to re-run all of your code.
+
+# Best Practices to Have a Good Relationship With Colleagues (including your future self)}
+
+# How to share data?
+
+**General Idea:** Everyone work with the same original data. If possible, keep data remote.
+
+# Google Sheets
+
+For example, some data can be stored in our Google Drive:
+
+```{r}
+## The first time this is run in a while, you'll need to run each line by hand. Thereafter, it should all work smoothly.
+library(googlesheets)
+countyCountsGS<-gs_title("countyCountsFIPS.csv") ## get info about the data
+countyCounts<-as.data.frame(gs_read_csv(countyCountsGS,as.is=TRUE),stringsAsFactors=FALSE)
+str(countyCounts)
+```
+# Data Online
+
+Other data can be read directly from a website:
+```{r}
+usaCountiesPopCentroids<-read.csv(url("http://www2.census.gov/geo/docs/reference/cenpop2010/county/CenPop2010_Mean_CO.txt"),as.is=TRUE)
+head(usaCountiesPopCentroids)
+```
+
+# Small Data on Github
+
+# Plain Text Data If Possible 
+
+
+

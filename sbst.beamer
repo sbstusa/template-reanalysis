@@ -192,7 +192,7 @@ $endif$
 
 \addtobeamertemplate{frametitle}{}{%
 \begin{tikzpicture}[remember picture,overlay]
-\node[anchor=south east,yshift=4pt] at (current page.south east) {\includegraphics[height=0.5cm]{SBSTLightBulb}};
+\node[anchor=south east,yshift=6pt,xshift=-3pt] at (current page.south east) {\includegraphics[height=0.5cm]{SBSTLightBulb}};
 \end{tikzpicture}}
 
 \addtobeamertemplate{title page}{}{%

@@ -2,8 +2,8 @@
 %\setbeameroption{hide notes}
 \usepackage{etex}
 \reserveinserts{28}
-\usepackage{styles/presentation}
-\usepackage{styles/notation}
+\usepackage{presentation}
+\usepackage{notation}
 \usepackage{caption}
 \usepackage{amssymb,amsmath}
 \usepackage{tikz}
@@ -22,10 +22,9 @@
 \useinnertheme{default}
 \usefonttheme{default}
 %\useoutertheme{progressbar}
-\usepackage{styles/beamerouterthemeprogressbar}
+\usepackage{beamerouterthemeprogressbar}
 \progressbaroptions{titlepage=normal,headline=normal,frametitle=normal}
 
-\graphicspath{{.}{./figures/}} 
 
 % Define SBST Colors
 %% Dark Yellow: 102, 83, 30
@@ -190,6 +189,7 @@ $if(author)$
 $endif$
 \date{$date$}
 
+\graphicspath{{.}{../graphics/}} ## make it easier to find the logos
 \addtobeamertemplate{frametitle}{}{%
 \begin{tikzpicture}[remember picture,overlay]
 \node[anchor=south east,yshift=6pt,xshift=-3pt] at (current page.south east) {\includegraphics[height=0.5cm]{SBSTLightBulb}};

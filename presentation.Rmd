@@ -65,6 +65,7 @@ How can anyone do high stakes data analysis?
 3) \textcolor{orange}{Track dependencies:} What file depends on what other file? Can we go from raw data to results in one command? Where did this figure come from?
 	- Share files instead of copying files.
 	- Think in Batch mode (even if you develop in interactive mode)
+	- Plan for use of code on a fresh computer/empty directory.
   
 4) Other ideas for after the presentation? 
 
@@ -104,7 +105,7 @@ Eventually we will have some shared data space on an Amazon EC2 instance.
 
 ## Think in Batch Mode
 
-\textcolor{orange}{Ideal:} Go from raw data to numbers, tables, figures in one command.
+\textcolor{orange}{Ideal:} Go from raw data to numbers, tables, figures in one command starting from a clean slate.
 
 For example, at the command line `R --vanilla --file=masterfile.R` does the whole analysis.
 

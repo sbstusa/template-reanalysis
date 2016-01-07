@@ -189,7 +189,7 @@ $if(author)$
 $endif$
 \date{$date$}
 
-\graphicspath{{.}{../graphics/}} ## make it easier to find the logos
+\graphicspath{{.}{../graphics/}} % make it easier to find the logos
 \addtobeamertemplate{frametitle}{}{%
 \begin{tikzpicture}[remember picture,overlay]
 \node[anchor=south east,yshift=6pt,xshift=-3pt] at (current page.south east) {\includegraphics[height=0.5cm]{SBSTLightBulb}};

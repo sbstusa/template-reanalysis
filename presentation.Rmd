@@ -1,81 +1,97 @@
 ---
-title: How can we increase our confidence in our results.
-author: Jake Bowers
+title: "Let's Talk About How To Ease Re-Analysis"
+author: "Jake Bowers"
 date: '`r format(Sys.Date(), "%B %d, %Y")`'
-mainfont: "Minion Pro"
 output:
   beamer_presentation:
+    keep_tex: yes
     latex_engine: xelatex
     template: sbst.beamer
-    keep_tex: yes
-    toc: yes 
-  pdf:
     toc: yes
+    slide_level: 2
+  ioslides_presentation:
+    logo: SBSTLightBulb.png
+    smaller: yes
 ---
-
-
-```{r include=FALSE, cache=FALSE}
-## the toc: yes line above tricks pandoc into running latex twice so that we can see the nice logos
+```{r setup, include=FALSE, echo=FALSE, cache=FALSE}
+## the 'toc: yes' line above tricks pandoc into running latex twice so that we can see the nice logos
 
 # Some customization.  You can alter or delete as desired (if you know what you are doing).
 # knitr settings to control how R chunks work.
 
 require(knitr)
 opts_chunk$set(
-	       tidy=FALSE,     # display code as typed
-	       size="footnotesize",    # slightly smaller font for code
-	       echo=TRUE,
-	       results='markup',
-	       strip.white=TRUE,
-	       cache=FALSE,
-	       highlight=TRUE,
-	       width.cutoff=132,
-	       size='footnotesize',
-	       out.width='.9\\textwidth',
-	       message=FALSE,
-	       comment=NA)
+  size = "scriptsize",    # slightly smaller font for code
+  echo = TRUE,
+  results = 'markup',
+  strip.white = TRUE,
+  cache = FALSE,
+  highlight = TRUE,
+  width.cutoff = 80,
+  out.width = '.9\\textwidth',
+  message = FALSE,
+  comment = NA,
+  tidy = TRUE,     # display code as typed
+  tidy.opts = list(blank = FALSE, width.cutoff = 80))
 ```
 
-# What is this about?
+# The Code Problem
 
-The report is coming.
+## How can we have confidence in our results?
 
-We want to have confidence in our results.
+**If** Data analysis is computer programming.
 
-How shall we do this?
+**And** Computer programs have bugs.
 
-# High level process
-
-A second pair of eyes.
-
-Different levels of scrutiny depend on divergence from priors: can you re-run my code? can you re-create my results (numbers, figures, tables) without seeing my code?
+**Then** How can anyone write code to do high stakes data analysis?
 
 
+## General Strategies to Enhance Confidence and Reduce Bugs
 
-# Nitty Gritty 
+1) Pairs Programming: If you and your colleagues are going to have to use each others' code, you may start writing code as if others were going to read it.
 
-What does a second pair of eyes imply?
+2) Unit Tests: Can we get the program to fail when it does something wrong?
 
-Assume a colleague will need to re-run all of your code.
+3) Dependency Tracking: What file depends on what other file? Can we go from raw data to results in one command? Where did this figure come from?
 
-# Best Practices to Have a Good Relationship With Colleagues (including your future self)}
+4) Other ideas? 
 
-# How to share data?
+# Nitty Gritty
 
-**General Idea:** Everyone work with the same original data. If possible, keep data remote.
+## How to be nice to your future self and future friends with code?
 
-# Google Sheets
+```{r googlesheets1, size="scriptsize"}
+## The first time this is run in a while, you'll need to run each line by hand. Thereafter, it should all work smoothly.
+library(googlesheets)
+countyCountsGS <- gs_title("countyCountsFIPS.csv") ## get info about the data
+countyCounts <- as.data.frame(gs_read_csv(countyCountsGS,as.is=TRUE),stringsAsFactors=FALSE)
+library(xtable)
+xt1 <- xtable(with(countyCounts,tapply(n,state,mean)))
+```
+
+```{r xtab}
+print(x1)
+```
+
+## General Data Sharing Ideas
+
+Everyone start with the same original data and code to turn original data into clean working file, and code to turn working file into results (numbers, tables, figures)
+
+If possible, keep data remote. If possible, keep data as plain text (.csv for example)
+
+## Data Sharing Idea 1: Google Sheets
 
 For example, some data can be stored in our Google Drive:
 
-```{r}
+```{r googlesheets, size="scriptsize"}
 ## The first time this is run in a while, you'll need to run each line by hand. Thereafter, it should all work smoothly.
 library(googlesheets)
 countyCountsGS<-gs_title("countyCountsFIPS.csv") ## get info about the data
 countyCounts<-as.data.frame(gs_read_csv(countyCountsGS,as.is=TRUE),stringsAsFactors=FALSE)
 str(countyCounts)
 ```
-# Data Online
+
+## Data Sharing Idea 2: Data Online
 
 Other data can be read directly from a website:
 ```{r}
@@ -83,9 +99,15 @@ usaCountiesPopCentroids<-read.csv(url("http://www2.census.gov/geo/docs/reference
 head(usaCountiesPopCentroids)
 ```
 
-# Small Data on Github
+## Other Data Ideas
 
-# Plain Text Data If Possible 
+ - Small Text Files (.txt,.csv) can live on Github (currently this is all public)
 
+## Data Ideas Specific to Experiments and the SBST
+
+ - Experiments are defined by treatment assignments, fixed/pre-treatment design features (like blocks/strata), and outcomes. The analysis of experiments requires those three pieces of information for each unit.^[And we assume that, within block, the probability of treatment assignment is constant for each unit.]
+
+
+# Best Practices Regarding Code
 
 

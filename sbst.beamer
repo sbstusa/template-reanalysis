@@ -1,4 +1,4 @@
-\documentclass[10pt,ignorenonframetext,xcolor={svgnames}]{beamer}
+\documentclass[11pt,ignorenonframetext,xcolor={svgnames}]{beamer}
 %\setbeameroption{hide notes}
 \usepackage{etex}
 \reserveinserts{28}
@@ -10,10 +10,11 @@
 \usepackage{textpos}
 \usepackage{ifxetex,ifluatex}
 \usepackage{fixltx2e} % provides \textsubscript
-\usepackage{lmodern}
+%\usepackage{lmodern}
 \usepackage{fontspec,xltxtra,xunicode}
 \defaultfontfeatures{Mapping=tex-text,Scale=MatchLowercase}
 \setmainfont{Lato}
+\setmonofont[Scale=MatchLowercase]{Source Code Pro Light}
 \let\sfdefault\rmdefault
 \newcommand{\euro}{€}
 \captionsetup{labelformat=empty,labelsep=none,font=small,skip=.25ex} %No "Figure" labels
@@ -38,7 +39,9 @@
 %% red:  R=250 G=86 B=70 FA5646
 %% green:  R=3 G=202 B=185 03CAB9
 %% grey:  R=153 G=153 B=153 999999
+%% Dark Yellow: 102, 83, 30
 
+\definecolor{darkyellow}{rgb}{102,83,30}
 \definecolor{blue}{HTML}{2E9AC4}
 \definecolor{darkblue}{rgb}{19,64,80}
 \definecolor{green}{HTML}{03CAB9}
@@ -70,6 +73,7 @@
 \IfFileExists{upquote.sty}{\usepackage{upquote}}{}
 % use microtype if available
 \IfFileExists{microtype.sty}{\usepackage{microtype}}{}
+\setbeamerfont{quote}{shape=\upshape}
 
 \setlength{\emergencystretch}{3em}  % prevent overfull lines
 \setcounter{secnumdepth}{0}
@@ -126,17 +130,28 @@ $endif$
 %%     \let\partname\relax
 %%     \frame{\partpage}
 %% }
-%% \AtBeginSection{
-%%   \let\insertsectionnumber\relax
-%%     \let\sectionname\relax
-%%     \frame{\sectionpage}
-%% }
-%% \AtBeginSubsection{
-%%   \let\insertsubsectionnumber\relax
-%%     \let\subsectionname\relax
-%%     \frame{\subsectionpage}
-%% }
-%%
+
+\AtBeginSection{
+   \let\insertsectionnumber\relax
+      \let\sectionname\relax
+  {
+    \setbeamercolor{background canvas}{bg=blue}
+    %\setbeamercolor{frametitle}{fg=white,bg=darkblue}
+    %\setbeamercolor{normal text}{fg=white,bg=darkblue}
+    %\setbeamercolor{structure}{fg=white}
+       \begin{frame}
+    %\frametitle{\sectionpage}
+    \tableofcontents[currentsection]
+      \end{frame}
+  }
+}
+
+%%% \AtBeginSubsection{
+%%%   \let\insertsubsectionnumber\relax
+%%%     \let\subsectionname\relax
+%%%     \frame{\subsectionpage}
+%%% }
+%%%
 $if(strikeout)$
 \usepackage[normalem]{ulem}
 % avoid problems with \sout in headers with hyperref:
@@ -192,13 +207,13 @@ $endif$
 
 $for(include-before)$
 $include-before$
-
 $endfor$
-$if(toc)$
-\begin{frame}
-\tableofcontents[hideallsubsections]
-\end{frame}
-$endif$
+
+%% $if(toc)$
+%% \begin{frame}
+%% \tableofcontents[hideallsubsections]
+%% \end{frame}
+%% $endif$
 
 $body$
 

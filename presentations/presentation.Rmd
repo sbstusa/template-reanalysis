@@ -3,15 +3,15 @@ title: "Let's Talk About How To Ease Re-Analysis"
 author: "Jake Bowers"
 date: '`r format(Sys.Date(), "%B %d, %Y")`'
 output:
-  beamer_presentation:
-    keep_tex: yes
-    latex_engine: xelatex
-    template: sbst.beamer
-    toc: yes
-    slide_level: 2
   ioslides_presentation:
     logo: SBSTLightBulb.png
     smaller: yes
+  beamer_presentation:
+    keep_tex: yes
+    latex_engine: xelatex
+    slide_level: 2
+    template: sbst.beamer
+    toc: yes
 ---
 ```{r setup, include=FALSE, echo=FALSE, cache=FALSE}
 ## the 'toc: yes' line above tricks pandoc into running latex twice so that we can see the nice logos

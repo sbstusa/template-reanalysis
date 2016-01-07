@@ -3,16 +3,16 @@ title: "Let's Talk About How To Ease Re-Analysis"
 author: "Jake Bowers"
 date: '`r format(Sys.Date(), "%B %d, %Y")`'
 output:
-  ioslides_presentation:
-    css: sbstpresentation.css
-    logo: ../graphics/SBSTLightBulb.png
-    smaller: yes
   beamer_presentation:
     keep_tex: yes
     latex_engine: xelatex
     slide_level: 2
     template: sbst.beamer
     toc: yes
+  ioslides_presentation:
+    css: sbstpresentation.css
+    logo: ../graphics/SBSTLightBulb.png
+    smaller: yes
 ---
 ```{r setup, include=FALSE, echo=FALSE, cache=FALSE}
 ## the 'toc: yes' line above tricks pandoc into running latex twice so that we can see the nice logos
@@ -56,8 +56,10 @@ How can anyone do high stakes data analysis?
 
 
 ## General Strategies to Enhance Confidence and Reduce Bugs
+<!-- HTML presentations use a different color choice method  for example <span style="color:orange">Work together</span> --->
 
-1) \textcolor{orange}{Work together:}
+
+1) \textcolor{orange}{Work together:} 
 	- If you and your colleagues are going to have to use each others' code, you may start writing code as if others were going to read it.
 	- A second pair of eyes spots errors.
 

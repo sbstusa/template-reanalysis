@@ -4,7 +4,8 @@ author: "Jake Bowers"
 date: '`r format(Sys.Date(), "%B %d, %Y")`'
 output:
   ioslides_presentation:
-    logo: SBSTLightBulb.png
+    css: sbstpresentation.css
+    logo: ../graphics/SBSTLightBulb.png
     smaller: yes
   beamer_presentation:
     keep_tex: yes

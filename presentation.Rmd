@@ -35,26 +35,34 @@ opts_chunk$set(
   tidy.opts = list(blank = FALSE, width.cutoff = 80))
 ```
 
-# The Code Problem
+# Overview: The Code Problem
 
-## How can we have confidence in our results?
+## The Code Problem
 
-**If** Data analysis is computer programming.
+Data analysis is computer programming.
 
-**And** Computer programs have bugs.
+\medskip
 
-**Then** How can anyone write code to do high stakes data analysis?
+Computer programs have bugs.
+
+\medskip
+
+How can anyone do high stakes data analysis? (Ideas for how to do this on the next slide.)
 
 
 ## General Strategies to Enhance Confidence and Reduce Bugs
 
-1) Pairs Programming: If you and your colleagues are going to have to use each others' code, you may start writing code as if others were going to read it.
+1) Work together: 
+  a. If you and your colleagues are going to have to use each others' code, you may start writing code as if others were going to read it.
+  b. A second pair of eyes spots errors.
 
-2) Unit Tests: Can we get the program to fail when it does something wrong?
+2) Test assumptions: Can we get the program to fail when it does something wrong?
 
-3) Dependency Tracking: What file depends on what other file? Can we go from raw data to results in one command? Where did this figure come from?
-
-4) Other ideas? 
+3) Track dependencies: What file depends on what other file? Can we go from raw data to results in one command? Where did this figure come from?
+  a. Share files instead of copying files.
+  b. Think in Batch mode (even if you develop in interactive mode)
+  
+4) Other ideas for after the presentation. 
 
 # Nitty Gritty
 
@@ -63,14 +71,20 @@ opts_chunk$set(
 ```{r googlesheets1, size="scriptsize"}
 ## The first time this is run in a while, you'll need to run each line by hand. Thereafter, it should all work smoothly.
 library(googlesheets)
-countyCountsGS <- gs_title("countyCountsFIPS.csv") ## get info about the data
-countyCounts <- as.data.frame(gs_read_csv(countyCountsGS,as.is=TRUE),stringsAsFactors=FALSE)
-library(xtable)
-xt1 <- xtable(with(countyCounts,tapply(n,state,mean)))
+fakedatGS <- gs_title("experimentDat.csv") ## get info about the data
+fakedat <- as.data.frame(gs_read_csv(fakedatGS,as.is=TRUE),stringsAsFactors=FALSE)
+str(fakedat)
 ```
 
-```{r xtab}
-print(x1)
+```{r genexample, echo=FALSE,results='hide'}
+fakedat$y0 <- rnorm(nrow(fakedat))+5 ## no negative numbers
+fakedat$y1 <- fakedat$y0+5
+fakedat$Y <- with(fakedat, Z * y1 + (1-Z) * y0)
+```
+
+```{r xtab, results='asis'}
+
+
 ```
 
 ## General Data Sharing Ideas

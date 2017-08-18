@@ -1,0 +1,29 @@
+---
+title: Example Report
+author: The Author
+date: Today
+bibliography: refs.bib
+biblio-files: refs.bib
+fontsize: 12pt
+geometry: margin=1in
+graphics: yes
+biblio-style: authoryear-comp
+output:
+  pdf_document:
+    keep_tex: true
+    latex_engine: xelatex
+    citation_package: biblatex
+    template: reportlong.latex
+    includes:
+        in_header:
+           - defs-all.sty
+---
+
+# Introduction
+
+This is an example of a report. Here is some math $y=f(x) \equiv \frac{x^2}{\text{Variance}}$.
+
+When assessing randomization we really do not want to do one-by-one tests. Instead we'd prefer some omnibus test like that proposed by @hansenbowers2008.
+
+# References
+
